@@ -1,3 +1,4 @@
+//swucafe_2020111324_김한선_2022-12-15
 package com.android.swucafe;
 
 import android.content.Context;
@@ -48,8 +49,10 @@ public class Fragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //fragment_2 화면 연결
         ViewGroup rootView =(ViewGroup)inflater.inflate(R.layout.fragment_2, container, false);
 
+        //initUI 메서드
         initUI(rootView);
 
         return rootView;
@@ -68,49 +71,57 @@ public class Fragment2 extends Fragment {
         //어댑터 생성
         adapter = new NoteAdapter();
 
-        adapter.addItem(new Note(0,"0","150kcal","","","아메리카노(Ice)",
-                "0",null,"Best Menu"));
-        adapter.addItem(new Note(1,"0","200kcal","","","아메리카노(HOT)",
-                "1",null,"Best Menu"));
-        adapter.addItem(new Note(2,"0","160kcal","","","까페라떼(Hot)",
-                "1",null,"Best Menu"));
-        adapter.addItem(new Note(3,"0","260kcal","","","고구마라떼(HOT)",
-                "1",null,"한정 메뉴"));
-        adapter.addItem(new Note(4,"0","180kcal","","","바나나주스",
-                "0",null,"계절 메뉴"));
-        adapter.addItem(new Note(5,"0","120kcal","","","딸기주스",
-                "0",null, "계절 메뉴"));
-        adapter.addItem(new Note(6,"0","126kcal","","","키위주스",
-                "0",null,"계절 메뉴"));
-        adapter.addItem(new Note(7,"0","130kcal","","","오렌지주스",
-                "0",null,"계절 메뉴"));
+        //리사이클러뷰 항목 생성
+        adapter.addItem(new Note(0,"150kcal","","","아메리카노(Ice)",
+                "0","Best Menu"));
+        adapter.addItem(new Note(1,"200kcal","","","아메리카노(HOT)",
+                "1","Best Menu"));
+        adapter.addItem(new Note(2,"160kcal","","","까페라떼(Hot)",
+                "1","Best Menu"));
+        adapter.addItem(new Note(3,"260kcal","","","고구마라떼(HOT)",
+                "1","한정 메뉴"));
+        adapter.addItem(new Note(4,"180kcal","","","바나나주스",
+                "0","계절 메뉴"));
+        adapter.addItem(new Note(5,"120kcal","","","딸기주스",
+                "0", "계절 메뉴"));
+        adapter.addItem(new Note(6,"126kcal","","","키위주스",
+                "0","계절 메뉴"));
+        adapter.addItem(new Note(7,"130kcal","","","오렌지주스",
+                "0","계절 메뉴"));
 
 
         recyclerView.setAdapter(adapter);
 
+        //어댑터뷰 항목 클릭 시
         adapter.setOnItemClickListener(new OnNoteItemClickListener() {
             @Override
             public void onItemClick(NoteAdapter.ViewHolder holder, View view, int position) {
                 Note item = adapter.getItem(position);
 
+                //dialog_ 대화상자 생성
                 View diaolgView = View.inflate(context,R.layout.dialog, null);
                 AlertDialog.Builder dlg = new AlertDialog.Builder(context);
-                dlg.setIcon(R.drawable.movie_icon);
+                dlg.setTitle("                          < 주문 >");
+
+                //대화상자_ 라디오버튼 목록
                 final String[] option = new String[] {"포장", "매장"};
                 dlg.setSingleChoiceItems(option,0, null);
                 dlg.setView(diaolgView);
+
+                //주문하기 버튼
                 dlg.setPositiveButton("주문하기", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        //주문하기 버튼을 눌렀을 경우
                         Toast.makeText(getContext(),item.getContents()+"주문 완료",Toast.LENGTH_SHORT).show();
                         MainActivity activity = (MainActivity)getActivity();
                         activity.onFragmentChanged(1);
                     }
                 });
+
+                //닫기 버튼
                 dlg.setNegativeButton("닫기", null);
                 dlg.show();
-
-//                Toast.makeText(getContext(),"아이템 선택됨 : "+ item.getContents(),Toast.LENGTH_SHORT).show();
             }
         });
 

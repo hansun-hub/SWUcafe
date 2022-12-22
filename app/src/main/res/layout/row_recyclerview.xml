@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--swucafe_2020111324_김한선_2022-12-15-->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -19,7 +20,7 @@
         android:visibility="visible">
 
         <ImageView
-            android:id="@+id/moodImageView"
+            android:id="@+id/ImageView"
             android:layout_width="54dp"
             android:layout_height="54dp"
             android:layout_gravity="center_vertical"
@@ -47,38 +48,30 @@
                 android:layout_marginTop="10dp">
 
 <!--                <ImageView-->
-<!--                    android:id="@+id/weatherImageView"-->
+<!--                    android:id="@+id/pictureExistsImageView"-->
 <!--                    android:layout_width="32dp"-->
 <!--                    android:layout_height="32dp"-->
-<!--                    android:layout_alignParentLeft="true"-->
-<!--                    android:src="@drawable/weather_icon_1" />-->
-
-                <ImageView
-                    android:id="@+id/pictureExistsImageView"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@id/dateTextView"
-                    android:src="@drawable/ic_baseline_home_24" />
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_toRightOf="@id/dateTextView"-->
+<!--                    android:src="@drawable/ic_baseline_home_24" />-->
 
                 <TextView
-                    android:id="@+id/locationTextView"
+                    android:id="@+id/kcalTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="노원구 공릉동"
-                    android:textSize="16sp"/>
+                    android:layout_centerInParent="true"
+                    android:text="150kcal"
+                    android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/dateTextView"
+                    android:id="@+id/descriptTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="11월 24일"
+                    android:text="BestMenu"
                     android:textColor="#FF0000FF"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
             </RelativeLayout>
         </LinearLayout>
 

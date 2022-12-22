@@ -1,6 +1,6 @@
+//swucafe_2020111324_김한선_2022-12-15
 package com.android.swucafe;
 
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         implements OnNoteItemClickListener{
 
-    //Note로 Array 만듬
+    //Note클래스 객체로 Array 만듬
     ArrayList<Note> items = new ArrayList<Note>();
 
     OnNoteItemClickListener listener;
@@ -26,6 +26,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
 
     @NonNull
     @Override
+    //ViewHolder 클래스 객체를 생성하는 메서드
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.row_recyclerview, parent, false);
@@ -34,6 +35,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
     }
 
     @Override
+    //어댑터 생성자에 넘어온 데이터를 ViewHolder에 설정하는 메서드
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Note item = items.get(position);
         holder.setItem(item);
@@ -41,6 +43,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
     }
 
     @Override
+    //목록에 보여줄 아이템의 개수
     public int getItemCount() {
         return items.size();
     }
@@ -57,7 +60,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         return items.get(position);
     }
 
-
     public void setOnItemClickListener(OnNoteItemClickListener listener){
         this.listener = listener;
     }
@@ -69,141 +71,70 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         }
     }
 
-    public void switchLayout(int postion) {
-        layoutType = postion;
-    }
-
     static class ViewHolder extends RecyclerView.ViewHolder{
 
         LinearLayout layout1;
-
-
-        ImageView moodImageView;
-
-
-        ImageView pictureExistImageView;
-
-
-//        ImageView weatherImageView;
-
-
+        ImageView ImageView;
         TextView contentsTextView;
+        TextView KcalTextView;
+        TextView descriptTextView;
 
-
-        TextView locationTextView;
-
-
-        TextView dateTextView;
-
-
+        //아이템들 하나하나의 view 보여지게 할 수 있는 객체
         public ViewHolder(@NonNull View itemView, final OnNoteItemClickListener listener, int layoutType) {
             super(itemView);
 
             layout1 = itemView.findViewById(R.id.layout1);
 
-            moodImageView = itemView.findViewById(R.id.moodImageView);
-
-            pictureExistImageView = itemView.findViewById(R.id.pictureExistsImageView);
-
-//            weatherImageView = itemView.findViewById(R.id.weatherImageView);
+            ImageView = itemView.findViewById(R.id.ImageView);
 
             contentsTextView = itemView.findViewById(R.id.contentsTextView);
 
-            locationTextView = itemView.findViewById(R.id.locationTextView);
+            KcalTextView = itemView.findViewById(R.id.kcalTextView);
 
-            dateTextView = itemView.findViewById(R.id.dateTextView);
+            descriptTextView = itemView.findViewById(R.id.descriptTextView);
 
+            //아이템뷰를 클릭하면 뷰홀더가 보여짐
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-
                     if(listener != null){
                         listener.onItemClick(ViewHolder.this, view, position);
                     }
-
                 }
             });
             setLayoutType(layoutType);
         }
+
+        //이미지, 내용, 칼로리, 설명을 각각의 item에 셋팅
         public void setItem(Note item){
-            String mood = item.getMood();
-            int moodIndex = Integer.parseInt(mood);
-            setMoodImage(moodIndex);
-
-            String picturePath = item.getPicture();
-
-            if(picturePath != null && !picturePath.equals("")){
-                pictureExistImageView.setVisibility(View.VISIBLE);
-
-            } else {
-                pictureExistImageView.setVisibility(View.GONE);
-
-            }
-
-            // set weather
-            String weather = item.getWeather();
-            int weatherIndex = Integer.parseInt(weather);
-//            setWeatherImage(weatherIndex);
+            String img = item.getImg();
+            int imgIndex = Integer.parseInt(img);
+            setImage(imgIndex);
 
             contentsTextView.setText(item.getContents());
-
-            locationTextView.setText(item.getAddress());
-
-            dateTextView.setText(item.getCreateDateStr());
+            KcalTextView.setText(item.getKcal());
+            descriptTextView.setText(item.getDescript());
         }
 
-        public void setMoodImage(int moodIndex) {
+        //image 셋팅
+        public void setImage(int moodIndex) {
             switch (moodIndex) {
+                //찬 음료
                 case 0:
-                    moodImageView.setImageResource(R.drawable.ic_baseline_coffee_24);
+                    ImageView.setImageResource(R.drawable.ic_baseline_coffee_24);
                     break;
+                    //따뜻한 음료
                 case 1:
-                    moodImageView.setImageResource(R.drawable.ic_baseline_emoji_food_beverage_24);
-                    break;
-                case 2:
-                    moodImageView.setImageResource(R.drawable.ic_baseline_coffee_24);
-                    break;
-                case 3:
-                    moodImageView.setImageResource(R.drawable.ic_baseline_coffee_24);
-                    break;
-                case 4:
-                    moodImageView.setImageResource(R.drawable.ic_baseline_coffee_24);
+                    ImageView.setImageResource(R.drawable.ic_baseline_emoji_food_beverage_24);
                     break;
                 default:
-                    moodImageView.setImageResource(R.drawable.smile1_48);
+                    ImageView.setImageResource(R.drawable.ic_baseline_coffee_24);
                     break;
             }
         }
-//        public void setWeatherImage(int weatherIndex) {
-//            switch (weatherIndex) {
-//                case 0:
-//                    weatherImageView.setImageResource(R.drawable.weather_icon_1);
-//                    break;
-//                case 1:
-//                    weatherImageView.setImageResource(R.drawable.weather_icon_1);
-//                    break;
-//                case 2:
-//                    weatherImageView.setImageResource(R.drawable.weather_icon_1);
-//                    break;
-//                case 3:
-//                    weatherImageView.setImageResource(R.drawable.weather_icon_1);
-//                    break;
-//                case 4:
-//                    weatherImageView.setImageResource(R.drawable.weather_icon_1);
-//                    break;
-//                case 5:
-//                    weatherImageView.setImageResource(R.drawable.weather_icon_1);
-//                    break;
-//                case 6:
-//                    weatherImageView.setImageResource(R.drawable.weather_icon_1);
-//                    break;
-//                default:
-//                    weatherImageView.setImageResource(R.drawable.weather_icon_1);
-//                    break;
-//            }
-//        }
 
+        //layout1을 VISIBLE 하게 함
         public void setLayoutType(int layoutType) {
             if (layoutType == 0) {
                 layout1.setVisibility(View.VISIBLE);

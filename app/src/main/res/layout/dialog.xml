@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--swucafe_2020111324_김한선_2022-12-15-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="음료가격 : "
+        android:text="     음료가격 : 3000원"
         android:textColor="@color/black"
-        android:textSize="34sp" />
+        android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/tvCost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3000원"
-        android:textColor="@color/black"
-        android:textSize="35sp" />
 </LinearLayout>

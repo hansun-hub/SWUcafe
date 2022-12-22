@@ -1,30 +1,30 @@
+//swucafe_2020111324_김한선_2022-12-15
 package com.android.swucafe;
 
-//
+//note클래스 생성 후, 객체로 사용함
 public class Note {
 
+    //변수들_ 리사리클러뷰 개별 항목에 들어감
     int _id;
-    String weather;
-    String address;
+    String kcal;
     String locationX;
     String locationY;
     String contents;
-    String mood;
-    String picture;
-    String createDateStr;
+    String img;
+    String descript;
 
-    public Note(int _id, String weather, String address, String locationX, String locationY, String contents, String mood, String picture, String createDateStr) {
+    //Note 클래스 생성자
+    public Note(int _id, String kcal, String locationX, String locationY, String contents, String img, String descript) {
         this._id = _id;
-        this.weather = weather;
-        this.address = address;
+        this.kcal = kcal;
         this.locationX = locationX;
         this.locationY = locationY;
         this.contents = contents;
-        this.mood = mood;
-        this.picture = picture;
-        this.createDateStr = createDateStr;
+        this.img = img;
+        this.descript = descript;
     }
 
+    //Note 클래스 오버라이드한 메서드들
     public int get_id() {
         return _id;
     }
@@ -33,20 +33,12 @@ public class Note {
         this._id = _id;
     }
 
-    public String getWeather() {
-        return weather;
+    public String getKcal() {
+        return kcal;
     }
 
-    public void setWeather(String weather) {
-        this.weather = weather;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setKcal(String kcal) {
+        this.kcal = kcal;
     }
 
     public String getLocationX() {
@@ -73,28 +65,20 @@ public class Note {
         this.contents = contents;
     }
 
-    public String getMood() {
-        return mood;
+    public String getImg() {
+        return img;
     }
 
-    public void setMood(String mood) {
-        this.mood = mood;
+    public void setImg(String img) {
+        this.img = img;
     }
 
-    public String getPicture() {
-        return picture;
+    public String getDescript() {
+        return descript;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
-
-    public String getCreateDateStr() {
-        return createDateStr;
-    }
-
-    public void setCreateDateStr(String createDateStr) {
-        this.createDateStr = createDateStr;
+    public void setDescript(String descript) {
+        this.descript = descript;
     }
 
     public void add(Note item) {
